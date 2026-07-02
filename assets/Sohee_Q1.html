@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 1</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #FFF8F3;
+            font-family: "Pretendard", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            font-size: 40px;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            margin: 12px 0;
+            font-size: 22px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            background: #FFD966;
+            transition: .2s;
+        }
+
+        button:hover {
+            background: #FFC000;
+            transform: scale(1.02);
+        }
+
+        #madImage {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="madImage" src="assets/mad_sohee.png">
+
+    <audio id="yesSound" src="assets/yes.mp4"></audio>
+    <audio id="noSound" src="assets/no.mp4"></audio>
+
+    <div class="container">
+
+        <h1 id="question">
+            아부지의 선물의 생일은?!?!
+        </h1>
+
+        <div id="answers">
+
+            <button onclick="checkBirth(1)">1999년 1월 4일</button>
+
+            <button onclick="checkBirth(2)">1998년 1월 14일</button>
+
+            <button onclick="checkBirth(3)">1999년 1월 14일</button>
+
+            <button onclick="checkBirth(4)">1999년 2월 14일</button>
+
+            <button onclick="checkBirth(5)">1999년 1월 24일</button>
+
+        </div>
+
+    </div>
+
+    <script src="Sohee_Q1.js"></script>
+
+</body>
+
+</html>

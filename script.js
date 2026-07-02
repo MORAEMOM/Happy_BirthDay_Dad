@@ -41,7 +41,7 @@ actionBtn.addEventListener("click", () => {
     }, 3000);
 
     setTimeout(() => {
-      birthdayImg.src = "assets/me.png";
+      birthdayImg.src = "assets/me.jpg";
       message.textContent = "내가 선물~ㅋㅋㅋ 하고 그냥 넘어갈 수 없지!";
       actionBtn.textContent = "도전!";
       actionBtn.style.display = "inline-block";
