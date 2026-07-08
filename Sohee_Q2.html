@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Sohee Q2</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:pretendard,sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+h1{
+    margin-top:40px;
+}
+
+.grid{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(2,240px);
+    gap:20px;
+}
+
+.grid img{
+    width:240px;
+    height:320px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.grid img:hover{
+    transform:scale(1.03);
+}
+
+.correct{
+    border:5px solid #3fd15b;
+}
+
+.wrong{
+    animation:shake .3s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-8px);}
+50%{transform:translateX(8px);}
+75%{transform:translateX(-8px);}
+100%{transform:translateX(0);}
+}
+
+#videoSection{
+    display:none;
+    opacity:0;
+    transition:2s;
+    text-align:center;
+    margin-top:40px;
+}
+
+video{
+    width:900px;
+    max-width:90vw;
+    border-radius:15px;
+}
+
+button{
+    margin:15px;
+    padding:12px 30px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+
+#secret{
+    margin-top:20px;
+    color:#999;
+    opacity:.35;
+    display:none;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#secret:hover{
+    opacity:.8;
+}
+
+#hiddenMission{
+    margin-top:30px;
+    animation:fadeIn .8s;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>소희의 성장 순서를 맞춰보시오 😎</h1>
+
+<div class="grid" id="game">
+
+<img src="assets/Sohee_3.jpg" data-order="3">
+<img src="assets/Sohee_2.jpg" data-order="2">
+<img src="assets/Sohee_1.jpg" data-order="1">
+<img src="assets/Sohee_4.jpg" data-order="4">
+
+</div>
+
+
+<div id="videoSection">
+
+<video id="voice" src="assets/Voice1.mp4"></video>
+
+<br>
+
+<video id="mainVideo" src="assets/HBD_Dad.mp4" controls style="display:none;"></video>
+
+<br>
+
+<button id="playBtn" style="display:none;">🎬 영상 보기</button>
+
+<a href="assets/HBD_Dad.mp4" download>
+<button id="downloadBtn" style="display:none;">⬇ Download</button>
+</a>
+
+<div id="secret">
+아직 끝나지 않았다!?!
+</div>
+
+<div id="hiddenMission" style="display:none;">
+    <h2>🎁 Hidden Mission 🎁</h2>
+
+    <p style="font-size:22px;">
+        <b>소희 방의 침대 헤드를 확인하세요!</b>
+    </p>
+
+    <p style="color:#bbb;">
+        진짜 마지막 선물이 기다리고 있습니다 😊
+    </p>
+</div>
+
+</div>
+
+<script>
+
+let answer=1;
+
+document.querySelectorAll(".grid img").forEach(img=>{
+
+    img.onclick=()=>{
+
+        if(Number(img.dataset.order)==answer){
+
+            img.classList.add("correct");
+            answer++;
+
+            if(answer==5){
+
+                startVoice();
+
+            }
+
+        }else{
+
+            img.classList.add("wrong");
+
+            setTimeout(()=>{
+                img.classList.remove("wrong");
+            },300);
+
+        }
+
+    }
+
+});
+
+function startVoice(){
+
+    document.getElementById("game").style.display="none";
+
+    const section=document.getElementById("videoSection");
+
+    section.style.display="block";
+
+    setTimeout(()=>{
+        section.style.opacity=1;
+    },50);
+
+    const voice=document.getElementById("voice");
+
+    voice.play();
+
+    voice.onended=()=>{
+
+        document.getElementById("playBtn").style.display="inline-block";
+        document.getElementById("downloadBtn").style.display="inline-block";
+
+        setTimeout(()=>{
+            document.getElementById("secret").style.display="block";
+        },5000);
+
+    }
+
+}
+
+document.getElementById("playBtn").onclick=()=>{
+
+    document.getElementById("mainVideo").style.display="block";
+    document.getElementById("mainVideo").play();
+
+}
+
+document.getElementById("secret").onclick=()=>{
+
+    document.getElementById("hiddenMission").style.display="block";
+
+};
+</script>
+
+</body>
+</html>
