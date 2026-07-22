@@ -5,11 +5,12 @@
 <title>Sohee Q2</title>
 
 <style>
+
 body{
     margin:0;
     background:#111;
     color:white;
-    font-family:pretendard,sans-serif;
+    font-family:Pretendard,sans-serif;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -58,7 +59,7 @@ h1{
 #videoSection{
     display:none;
     opacity:0;
-    transition:2s;
+    transition:1.5s;
     text-align:center;
     margin-top:40px;
 }
@@ -67,43 +68,31 @@ video{
     width:900px;
     max-width:90vw;
     border-radius:15px;
+    background:black;
+}
+
+iframe{
+    width:900px;
+    max-width:90vw;
+    aspect-ratio:16/9;
+    border:none;
+    border-radius:15px;
 }
 
 button{
-    margin:15px;
+    margin:20px;
     padding:12px 30px;
     font-size:18px;
     cursor:pointer;
+    border:none;
+    border-radius:10px;
+    background:#3fd15b;
+    color:white;
+    transition:.2s;
 }
 
-
-#secret{
-    margin-top:20px;
-    color:#999;
-    opacity:.35;
-    display:none;
-    cursor:pointer;
-    transition:.3s;
-}
-
-#secret:hover{
-    opacity:.8;
-}
-
-#hiddenMission{
-    margin-top:30px;
-    animation:fadeIn .8s;
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+button:hover{
+    transform:scale(1.05);
 }
 
 </style>
@@ -115,46 +104,55 @@ button{
 
 <div class="grid" id="game">
 
-<img src="assets/Sohee_3.jpg" data-order="3">
-<img src="assets/Sohee_2.jpg" data-order="2">
-<img src="assets/Sohee_1.jpg" data-order="1">
-<img src="assets/Sohee_4.jpg" data-order="4">
+    <img src="assets/Sohee_3.jpg" data-order="3">
+    <img src="assets/Sohee_2.jpg" data-order="2">
+    <img src="assets/Sohee_1.jpg" data-order="1">
+    <img src="assets/Sohee_4.jpg" data-order="4">
 
 </div>
 
-
 <div id="videoSection">
 
-<video id="voice" src="assets/Voice1.mp4"></video>
+    <video
+        id="voice"
+        src="assets/Voice1.mp4"
+        preload="auto">
+    </video>
 
-<br>
+    <br>
 
-<video id="mainVideo" src="assets/HBD_Dad.mp4" controls style="display:none;"></video>
+    <button id="playBtn" style="display:none;">
+        🎬 아빠에게 보내는 영상
+    </button>
 
-<br>
+    <br>
 
-<button id="playBtn" style="display:none;">🎬 영상 보기</button>
-
-<a href="assets/HBD_Dad.mp4" download>
-<button id="downloadBtn" style="display:none;">⬇ Download</button>
-</a>
-
+    <iframe
+        id="mainVideo"
+        style="display:none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+    <p style="color:#aaa;">
+    사진을 맞춰줘서 고마워 ❤️
+    </p>
 </div>
 
 <script>
 
-let answer=1;
+let answer = 1;
 
 document.querySelectorAll(".grid img").forEach(img=>{
 
     img.onclick=()=>{
 
-        if(Number(img.dataset.order)==answer){
+        if(Number(img.dataset.order)===answer){
 
             img.classList.add("correct");
+
             answer++;
 
-            if(answer==5){
+            if(answer===5){
 
                 startVoice();
 
@@ -165,7 +163,9 @@ document.querySelectorAll(".grid img").forEach(img=>{
             img.classList.add("wrong");
 
             setTimeout(()=>{
+
                 img.classList.remove("wrong");
+
             },300);
 
         }
@@ -183,7 +183,9 @@ function startVoice(){
     section.style.display="block";
 
     setTimeout(()=>{
+
         section.style.opacity=1;
+
     },50);
 
     const voice=document.getElementById("voice");
@@ -193,28 +195,23 @@ function startVoice(){
     voice.onended=()=>{
 
         document.getElementById("playBtn").style.display="inline-block";
-        document.getElementById("downloadBtn").style.display="inline-block";
 
-        setTimeout(()=>{
-            document.getElementById("secret").style.display="block";
-        },5000);
-
-    }
+    };
 
 }
 
 document.getElementById("playBtn").onclick=()=>{
 
-    document.getElementById("mainVideo").style.display="block";
-    document.getElementById("mainVideo").play();
+    const frame=document.getElementById("mainVideo");
 
-}
+    frame.style.display="block";
 
-document.getElementById("secret").onclick=()=>{
+    frame.src="https://www.youtube.com/embed/lL2LKJQXI8E?autoplay=1&rel=0&modestbranding=1";
 
-    document.getElementById("hiddenMission").style.display="block";
+    document.getElementById("playBtn").style.display="none";
 
 };
+
 </script>
 
 </body>
