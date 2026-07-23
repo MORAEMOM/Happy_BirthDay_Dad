@@ -3,6 +3,7 @@ const birthdayArea = document.getElementById("birthdayArea");
 const birthdayImg = document.getElementById("birthdayImg");
 const message = document.getElementById("message");
 const actionBtn = document.getElementById("actionBtn");
+const soundText = document.getElementById("soundon");
 
 let step = 1;
 
@@ -11,7 +12,8 @@ setTimeout(() => {
 
   setTimeout(() => {
     introText.style.display = "none";
-
+    soundText.style.display = "none";
+    
     setTimeout(() => {
       birthdayArea.classList.remove("hidden");
     }, 500);
