@@ -22,6 +22,7 @@ setTimeout(() => {
 
 actionBtn.addEventListener("click", () => {
   if (step === 1) {
+    soundText.style.display = "none";
     birthdayImg.src = "assets/birthday_2.png";
     message.textContent = "선물을 받아야겠지?";
     actionBtn.textContent = "선물 줘봐라";
