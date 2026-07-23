@@ -130,18 +130,16 @@ button:hover{
 
     <br>
 
-    <button id="playBtn" style="display:none;">
-        🎬 아빠에게 보내는 영상
-    </button>
+<button
+    id="youtubeBtn"
+    onclick="openYoutube()"
+    style="display:none;">
+    🎬 축하 영상 보기
+</button>
 
     <br>
 
-    <iframe
-        id="mainVideo"
-        style="display:none;"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-    </iframe>
+ 
     <p style="color:#aaa;">
     사진을 맞춰줘서 고마워 ❤️
     </p>
@@ -203,24 +201,18 @@ function startVoice(){
 
     voice.onended=()=>{
 
-        document.getElementById("playBtn").style.display="inline-block";
+        document.getElementById("youtubeBtn").style.display="inline-block";
 
     };
 
 }
 
-document.getElementById("playBtn").onclick=()=>{
-
-    const frame=document.getElementById("mainVideo");
-
-    frame.style.display="block";
-
-    frame.src =
-"https://www.youtube.com/embed/IX1LdVO5Ba4?autoplay=1";
-
-    document.getElementById("playBtn").style.display="none";
-
-};
+function openYoutube() {
+    window.open(
+        "https://youtu.be/IX1LdVO5Ba4",
+        "_blank"
+    );
+}
 
 </script>
 
