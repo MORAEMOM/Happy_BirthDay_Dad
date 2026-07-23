@@ -12,7 +12,7 @@ setTimeout(() => {
 
   setTimeout(() => {
     introText.style.display = "none";
-    soundText.style.display = "none";
+    
     
     setTimeout(() => {
       birthdayArea.classList.remove("hidden");
